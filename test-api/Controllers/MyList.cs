@@ -59,6 +59,11 @@ namespace test_api.Controllers
         public IActionResult GetData()
         {
             var data = _context.mylines.ToList();
+            data.ForEach(x =>
+            {
+                _context.Remove(x);
+            });
+            _context.SaveChanges();
             return Ok(data);
         }
 
